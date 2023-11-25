@@ -8,16 +8,12 @@ def factorize(breezy):
     """"print a simple descomposition of an integer > 1"""
     i = 2
 
-    if value < 2:
+    if breezy < 2:
         return
     print()
-    print(breezy, "<- breezy-bef")
     while breezy % i:
         i += 1
-    print("{:.0f}={:.0f}*{:.0f}".format(breezy, breezy / i, i))
-    print(breezy, "<- breezy-aft")
-    print()
-
+    print("{:.0f}={:.0f}*{:.0f}".format(breezy, breezy / i, i), end="")
 if len(argv) != 2:
     exit()
 
@@ -26,7 +22,7 @@ try:
         line = file.readline()
 
         while line != "":
-            value = int(line.split('\n')[0])
+            breezy = int(line.split('\n')[0])
             factorize(breezy)
             line = file.readline()
 except:
