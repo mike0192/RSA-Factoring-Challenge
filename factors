@@ -1,0 +1,33 @@
+#!/usr/bin/python3
+"""Module that factorize as many numbers as possible
+ into a product of two smaller numbers."""
+from sys import argv
+
+
+def factorize(breezy):
+    """"print a simple descomposition of an integer > 1"""
+    i = 2
+
+    if value < 2:
+        return
+    print()
+    print(breezy, "<- breezy-bef")
+    while breezy % i:
+        i += 1
+    print("{:.0f}={:.0f}*{:.0f}".format(breezy, breezy / i, i))
+    print(breezy, "<- breezy-aft")
+    print()
+
+if len(argv) != 2:
+    exit()
+
+try:
+    with open(argv[1]) as file:
+        line = file.readline()
+
+        while line != "":
+            value = int(line.split('\n')[0])
+            factorize(breezy)
+            line = file.readline()
+except:
+    pass
