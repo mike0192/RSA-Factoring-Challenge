@@ -1,30 +1,27 @@
 #!/usr/bin/python3
-"""Module that factorize as many numbers as possible
- into a product of two smaller numbers."""
-from sys import argv
+import sys
+import time
 
+def factorize_numbers(file_path):
+    with open(file_path, 'r') as file:
+        for line in file:
+            number = int(line.strip())
+            start_time = time.time()
+            factors = factorize(number)
+            end_time = time.time()
 
-def factorize(breezy):
-    """"print a simple descomposition of an integer > 1"""
-    i = 2
+            if end_time - start_time > 5:
+                print(f"Time limit exceeded for number: {number}")
+            else:
+                print(f"{number}={factors[0]}*{factors[1]}")
 
-    if breezy < 2:
-        return
-    print()
-    while breezy % i:
-        i += 1
-    print("{:.0f}={:.0f}*{:.0f}".format(breezy, breezy / i, i), end="")
+def factorize(number):
+    for i in range(2, int(number ** 0.5) + 1):
+        if number % i == 0:
+            return (i, number // i)
+    return (1, number)
 
-if len(argv) != 2:
-    exit()
-
-try:
-    with open(argv[1]) as file:
-        line = file.readline()
-
-        while line != "":
-            breezy = int(line.split('\n')[0])
-            factorize(breezy)
-            line = file.readline()
-except:
-    pass
+# Usage: factors <file>
+# where <file> is a file containing natural numbers to factor.
+file_path = sys.argv[1]
+factorize_numbers(file_path)
